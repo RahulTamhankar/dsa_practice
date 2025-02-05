@@ -9,5 +9,4 @@ public class DsaPracticeApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DsaPracticeApplication.class, args);
 	}
-
 }
