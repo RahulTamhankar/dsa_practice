@@ -1,4 +1,4 @@
-package dp.knapsackpattern;
+package dp.zerooneknapsack;
 
 public class targetSum {
 
