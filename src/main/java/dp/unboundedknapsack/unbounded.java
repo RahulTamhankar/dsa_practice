@@ -11,6 +11,7 @@ public class unbounded {
             // Loop through all possible knapsack capacities.
             for (int j = 0; j <= capacity; j++) {
                 // If current item can fit in the knapsack.
+                //Add the value val[i-1] then deduct from j. Where i is processed there it can be processed again
                 if (wt[i - 1] <= j) {
                     dp[i][j] = Math.max(val[i - 1] + dp[i][j - wt[i - 1]], dp[i - 1][j]);
                 } else {

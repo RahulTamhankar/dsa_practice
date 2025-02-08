@@ -1,34 +1,53 @@
 package dp.unboundedknapsack;
 
 public class rodCutting {
-    public static int cutRod(int[] prices, int n) {
-        // dp[i][j] will store the maximum revenue obtainable using the first i pieces for rod of length j
-        int[][] dp = new int[prices.length + 1][n + 1];
 
-        // Loop through all possible lengths of rod (from 1 to n) and all pieces (from 1 to prices.length)
-        for (int i = 1; i <= prices.length; i++) {  // Start from 1, as 0 is the base case row
-            for (int j = 0; j <= n; j++) {  // Loop through all possible rod lengths (from 0 to n)
-                // If current piece can fit into the rod (i.e., if the piece length i is less than or equal to j)
-                if (i <= j) {
-                    // We can either take the piece or not
-                    dp[i][j] = Math.max(prices[i - 1] + dp[i][j - i], dp[i - 1][j]);
+    public static int rodCutting(int[] price, int length) {
+        int n = length;  // length of the rod (based on input array)
+
+        // Create a DP table to store the maximum value for each length
+        int[][] dp = new int[n + 1][n + 1];
+
+        // Iterate through the table to fill it based on the choices of cuts
+        for (int i = 0; i <= n; i++) {
+            for (int j = 0; j <= n; j++) {
+                if (j == 0) {
+                    dp[i][j] = 0;  // If no length to cut, value is 0
+                } else if (i == 0) {
+                    dp[i][j] = 0;  // No rod to cut
+                } else if (i <= j) {
+                    // Choose to cut the rod or skip
+                    //Why Don't We Use coins[i-1] the Same Way as price[i-1]?
+                    //In Rod Cutting, price[i-1] is a profit that you get when you cut the rod into pieces of size i. This is a profit-maximizing problem, where you are trying to maximize the total profit from cutting the rod. Hence, you need to add the value price[i-1] if you decide to cut the rod into pieces of length i.
+                    //
+                    //In Coin Change, you're not interested in maximizing anything. You're simply counting the ways to make change. The number of ways to make change for j using the first i coins is the sum of:
+                    //
+                    //The number of ways to make change for j - coins[i-1] (if you use the coin coins[i-1]).
+                    //The number of ways to make change for j without using the coin coins[i-1].
+                    //In summary:
+                    //
+                    //Rod Cutting: You maximize the profit by including the value of price[i-1] when you decide to cut the rod. You compare the profit from cutting versus not cutting.
+                    //Coin Change: You count the ways to make change, so you add the number of ways you can make the remaining amount when including a coin.
+                    //
+                    dp[i][j] = Math.max(price[i - 1] + dp[i][j - i], dp[i - 1][j]);
                 } else {
-                    // If current piece can't fit into the rod, carry forward the value from the previous row
+                    // If rod length is greater than the current j, don't cut
                     dp[i][j] = dp[i - 1][j];
                 }
             }
         }
 
-        // The final answer will be the maximum revenue for the rod of length n
-        return dp[prices.length][n];
+        // Return the maximum value for the full rod length
+        return dp[n][n];
     }
 
+    //this is unbounded as we can choose one length multiple times to maximize profit
     public static void main(String[] args) {
         // Example rod length and price array
         int n = 8;
         int[] prices = {1, 5, 8, 9, 10, 17, 17, 20};  // prices for rod lengths 1 to 8
 
         // Output the maximum obtainable value
-        System.out.println("Maximum obtainable value: " + cutRod(prices, n));
+        System.out.println("Maximum obtainable value: " + rodCutting(prices, n));
     }
 }
