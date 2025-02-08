@@ -13,7 +13,7 @@ public class lcsDpTable {
         for (int i = 0; i <= n1; i++) {
             for (int j = 0; j <= n2; j++) {
                 if (i == 0 || j == 0) {
-                    dp[i][j] = 0; // Base case when one string is empty
+                    dp[i][j] = 0; // Base case when one string is empty, Base case of memoize recursive is 1st row 1st column herr
                 } else if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
                     dp[i][j] = 1 + dp[i - 1][j - 1]; // Characters match, so remove it from both i and j
                 } else {
