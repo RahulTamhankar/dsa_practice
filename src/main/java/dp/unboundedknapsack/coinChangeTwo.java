@@ -64,6 +64,7 @@ public class coinChangeTwo {
         // Initialize the rest of the DP table: set to a large number (amount + 1), indicating that those amounts are not possible initially
         for (int j = 1; j <= amount; j++) {
             dp[0][j] = amount + 1;  // Impossible to make a non-zero amount with 0 coins
+
         }
 
         // Fill the DP table
@@ -124,7 +125,7 @@ public class coinChangeTwo {
 //        Initialization to 1 would lead to false assumptions and incorrect results, because it would imply that you can make every amount with just 1 coin, even when that’s not true.
 //        Initialization to amount + 1 ensures that we mark impossible states correctly and allow the DP algorithm to work properly, ensuring we only get valid solutions and can detect when it’s not possible to form a certain amount.
 //        You're right in thinking that initializing to 1 would cause an issue with future calculations, and I hope this clears up why amount + 1 is the better choice for initialization!
-
+// we do INT_MAX-1 so that while returning it gets subtracted from 1 otherwise int will overflow for INT_MAX+1
 
 ///////////////////VVVVVV IMP/////////////////////
 //--------------------------------------------------/////////
