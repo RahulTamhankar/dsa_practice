@@ -53,6 +53,7 @@ public class printLongestCommonSubsequence {
     }
 }
 
+
 //    so here dp is used with backtracking? also is it a common practice to always backtrack from end to beginning in dsa problems? if I want to do from beginning to end what extra steps and a careful reconstruction strategy to ensure the subsequence is correctly built?The key difference is that when you work from the end, you don't need to worry about the order and can directly append characters as you backtrack. When working from the beginning, you need to caref
 //        ChatGPT said:
 //        Yes, you're right! In Dynamic Programming (DP), the technique of backtracking is commonly used to reconstruct the solution after filling the DP table. Let's break down your questions and explore the concepts further:
