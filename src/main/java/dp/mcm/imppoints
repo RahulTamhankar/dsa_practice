@@ -39,4 +39,4 @@ k=i+1    k=j         for(i to k-1)    for(k to j)
 1. Find i,j
 2. Find Base Condn
 3. Find k loop scheme
-4. Calculate ans from temp_ans
+4. Calculate ans from temp_ans{the for function to find temp_ans depends on Question}
