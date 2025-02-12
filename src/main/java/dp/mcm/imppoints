@@ -1,0 +1,39 @@
+string+array
+Take 2 ptrs i and j
+i will be near left side j will be near right side
+k should be moved from i->j by doing k++ or k+2 etc different for different questions
+point where k is broken c  ->
+temp_ans for each break at k= 2 fun calls i to k, k+1to j
+ans=some_function(temp_ans)
+return ans
+
+
+[] w size 2x3 multiply [] w size 3x6 = [] w size 2x6
+
+Cost of MM= 2 3, 3 6
+            2 x 3 x 6  => 36
+
+
+arr[]={Dimensions of A B C}
+A=10x30
+B=30x5
+C=5x60
+
+temp_ans=(AB)C , A(BC)
+
+AB=10x30x30x5                 ,  (BC)=30x5x5x60
+  =10x30x5=1500                    , =30x60=9000
+(AB)C=10x5x5x60               ,  A(BC)=10x30x30x60
+     =10x5x60=3000               ,    =10x30x60=18000
+
+(AB)C=1500 + 3000       ,  A(BC)=9000+18000
+     =4500              ,       =27000
+Most efficient is 4500
+
+
+----------
+Two Schemes-
+k=i      k=j-1       for(i to k)      for(k+1 to j)
+k=i+1    k=j         for(i to k-1)    for(k to j)
+
+
