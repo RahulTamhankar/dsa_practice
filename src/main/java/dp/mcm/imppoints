@@ -36,4 +36,7 @@ Two Schemes-
 k=i      k=j-1       for(i to k)      for(k+1 to j)
 k=i+1    k=j         for(i to k-1)    for(k to j)
 
-
+1. Find i,j
+2. Find Base Condn
+3. Find k loop scheme
+4. Calculate ans from temp_ans
