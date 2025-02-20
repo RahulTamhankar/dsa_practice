@@ -46,7 +46,9 @@ public class letterCombinationsOfPhoneNumber {
         }
     }
 
-    // Main method to test the solution
+    // Pattern where we loop over items for each index and make recursive calls before N Queens
+    //PalindromePart ,word break,phone keypad
+
     public static void main(String[] args) {
         String digits = "23"; // Example input
         List<String> result = letterCombinations(digits);
