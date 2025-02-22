@@ -1,16 +1,14 @@
 package graphs.typesofgraphchapterone;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class adjacencyList {
     // Function to print the graph using adjacency list representation
-    public static void printGraph(Map<Integer, Set<Integer>> graph) {
-        for (Map.Entry<Integer, Set<Integer>> entry : graph.entrySet()) {
-            int node = entry.getKey();
-            Set<Integer> neighbors = entry.getValue();
+    public static void printGraph(Map<Integer, List<Integer>> graph) {
+        // Iterate through each node and its neighbors in the graph
+        for (Map.Entry<Integer, List<Integer>> entry : graph.entrySet()) {
+            int node = entry.getKey();  // Node
+            List<Integer> neighbors = entry.getValue();  // Neighbors of the node
             System.out.print("Node " + node + ", Neighbors: ");
             for (int neighbor : neighbors) {
                 System.out.print(neighbor + " ");
@@ -19,36 +17,30 @@ public class adjacencyList {
         }
     }
 
-    // Function to convert edge list to adjacency list
-    public static Map<Integer, Set<Integer>> createAdjacencyList(int[][] edgeList) {
-        Map<Integer, Set<Integer>> adjacencyList = new HashMap<>();
-
-        // Iterate through the edge list to fill the adjacency list
-        for (int[] edge : edgeList) {
-            int node1 = edge[0];
-            int node2 = edge[1];
-
-            // Add the edge in both directions for undirected graph
-            adjacencyList.putIfAbsent(node1, new HashSet<>());
-            adjacencyList.putIfAbsent(node2, new HashSet<>());
-
-            adjacencyList.get(node1).add(node2);
-            adjacencyList.get(node2).add(node1); // Undirected graph: add both directions
-        }
-
-        return adjacencyList;
-    }
-
     public static void main(String[] args) {
-        // Define the edge list (node pairs)
+        // Define the edge list (pairs of connected nodes)
         int[][] edgeList = {
-                {11, 5}, {6, 3}, {3, 4}, {4, 2}, {1, 3}
+                {1, 2}, {2, 3}, {3, 4}, {4, 2}, {1, 3}
         };
 
-        // Convert edge list to adjacency list
-        Map<Integer, Set<Integer>> adjacencyList = createAdjacencyList(edgeList);
+        // Create an adjacency list using HashMap
+        Map<Integer, List<Integer>> graph = new HashMap<>();
 
-        // Print the adjacency list representation of the graph
-        printGraph(adjacencyList);
+        // Fill the graph using the edge list
+        for (int[] edge : edgeList) {
+            int a = edge[0];
+            int b = edge[1];
+
+            // Ensure both nodes are in the graph
+            graph.putIfAbsent(a, new ArrayList<>());
+            graph.putIfAbsent(b, new ArrayList<>());
+
+            // Add the edge in both directions (undirected graph)
+            graph.get(a).add(b);
+            graph.get(b).add(a);
+        }
+
+        // Print the graph
+        printGraph(graph);
     }
 }
