@@ -54,7 +54,7 @@ public class ifPathExistsBfs {
             graph.putIfAbsent(a, new ArrayList<>());
             graph.putIfAbsent(b, new ArrayList<>());
             graph.get(a).add(b);  // Add destination to the adjacency list of source
-            graph.get(b).add(a);  // Add source to the adjacency list of destination (for undirected graph)
+            graph.get(b).add(a);  // Add so urce to the adjacency list of destination (for undirected graph)
         }
 
         // Define source and destination nodes
