@@ -108,3 +108,11 @@ public class snakesAndLadders {
         // You can add more test cases below
     }
 }
+
+// TC O(N^2)
+
+//SC CAN BE OPTIMISED
+//Like in STEP 2 -
+//Graph ke badle hum vector of vector le sakte hai
+//Or else in STEP 1-
+//DONT MAKE CONNECTION ARRAY TO SPACE KUM HOGA
