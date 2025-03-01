@@ -6,6 +6,11 @@ public class sumofEleBetweenk1SmallestAndk2SmallestNos {
     // Method to find the kth smallest element using a max-heap for the smallest k elements
     public static int kthSmallest(int[] arr, int k) {
         // Max-heap to store the first k smallest elements
+// Used a max-heap because we want to keep the smallest 'k' elements. In a max-heap,
+// the largest element is always at the top. When the heap exceeds size 'k',
+// we remove the largest element (the root of the max-heap) to ensure we only keep
+// the smallest 'k' elements.
+        //max heap as we want to eliminate elements that are large
         PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> b - a);
 
         // Add elements to the heap
