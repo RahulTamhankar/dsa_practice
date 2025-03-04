@@ -48,6 +48,14 @@ public class numberofTimesaSortedArrayisRotated {
     }
 }
 
+//###################//
+
+//No of Rotations = Index of Minimum element
+
+//This code will Give you index of minimum element. This code is connected to next code
+// Find an Element in a Rotated Sorted Array
+
+//###################//
 //minimum in sorted array
 //int findMin(vector<int>& nums) {
 //    int first = 0;
