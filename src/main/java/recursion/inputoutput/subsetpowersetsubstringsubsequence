@@ -1,0 +1,41 @@
+Key Differences:
+Concept	Description	Example (For Set S = {1, 2, 3})
+Subset	Any collection of elements from the set (order doesn't matter).	{1, 3}, {2}, {1, 2, 3}, {}, {2, 3}
+Power Set	The set of all possible subsets (including the empty set).	{ {}, {1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3}, {1, 2, 3} }
+Substring	A contiguous sequence of characters from a string.	"a", "ab", "bc", "abc" (for s = "abc")
+Subsequence	A sequence derived by deleting some or no characters, preserving order.	"a", "ab", "bc", "abc", "ac", "" (for s = "abc")
+Visual Examples:
+Set Example:
+Set S = {1, 2, 3}
+Subsets: {}, {1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3}, {1, 2, 3}
+Power Set: { {}, {1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3}, {1, 2, 3} }
+String Example:
+String s = "abc"
+Substrings: "a", "b", "c", "ab", "bc", "abc"
+Subsequences: "a", "b", "c", "ab", "ac", "bc", "abc", ""
+Conclusion:
+Subset and Power Set are used with sets, with a power set being the collection of all subsets.
+Substring and Subsequence are concepts for strings, with substrings being contiguous and subsequences maintaining the order but not requiring contiguity.
+substring is always continuous
+
+Subset me order matter nai karta ie. {1,2,3,4} ka subset can be {1,2} or {2,1} both same.
+But subsequence order matters.. like 1 aur 3 ko nikal ke hum ek subsequence bana sakte hai {1,3} but not {3,1}
+
+similary for {a,b,c}:
+subsequence can be {a,b} but not {b,a}
+subset can be both
+
+Thus substring is subset of subsequence which is subset of subset
+
+TIP-
+1)  If you are asked to print subsequence or subset or powerset... just print subsets
+    abc -> " " a b c [ab] bc ac abc = subsequence
+    abc -> " " a b c [ab][ba]...... = subset
+    testcases are not multiple so even if anything is printed.. it works
+    But if subsequence is asked then compulsory the 1st one has to be printed
+2)  The output is printed in the flow of recursion tree " " b a ab
+    if inquestion its asked lexicographical then do in dictionary format A B C..
+    To do this store recursion op in list and sort the list,
+    If there are duplicates then put in Map. Since its in Map it will be automatically sorted
+
+

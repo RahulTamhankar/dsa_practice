@@ -1,4 +1,4 @@
-package recursion;
+package recursion.ibh;
 
 public class kthSymbolinGrammar {
     // Function to find the kth symbol in the nth row
