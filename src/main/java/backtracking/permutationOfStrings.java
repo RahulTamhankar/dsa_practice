@@ -31,13 +31,16 @@ public class permutationOfStrings {
         return ans;
     }
 
-    private static void solve(int idx, char[] s, List<String> ans) {
+    private static void solve(int idx, char[] s, List<String> ans) { //start=idx ->it should start from 1st character
         // If we have processed all characters, we have one permutation
         if (idx == s.length) {
             // Convert char array to string/
-            //At this point, we convert the current char[] (which represents the permutation) back into a String, because we want the result to be in the form of strings (not characters).
+            //At this point, we convert the current char[] (which represents the permutation) back into a String,
+            // because we want the result to be in the form of strings (not characters).
             //Converting char[] to String:
-            //String str = new String(s);: We use this to create a new String from the character array s. This is necessary because the permutations are represented by char[] during recursion, but we want to store them as strings in the result list (ans).
+            //String str = new String(s);: We use this to create a new String from the character array s.
+            // This is necessary because the permutations are represented by char[] during recursion, but we want
+            // to store them as strings in the result list (ans).
             //Once we have this string, we add it to the ans list.
             String str = new String(s);
             ans.add(str);
@@ -49,7 +52,7 @@ public class permutationOfStrings {
 
         for (int i = idx; i < s.length; i++) {
             // Check if the character is already used at this position
-            if (!st.contains(s[i])) {
+            if (!st.contains(s[i])) {// Control
                 st.add(s[i]);
 
                 // Swap the current character to the current position
@@ -80,3 +83,39 @@ public class permutationOfStrings {
         }
     }
 }
+
+
+
+//In Java, the concept of pass-by-reference and pass-by-value behaves a bit differently than in some other languages. Let me clarify how this works with respect to strings and backtracking.
+//
+//Pass-by-Value in Java
+//Java is always pass-by-value, but the way it works for primitive types and objects can lead to confusion:
+//
+//Primitive Types (e.g., int, char, etc.):
+//When you pass a primitive type (like int, char, boolean, etc.) to a method, the actual value is passed. Any changes made to the parameter inside the method do not affect the original value outside the method.
+//Objects (e.g., String, ArrayList, etc.):
+//When you pass an object (like a String, ArrayList, char[], etc.), you are passing the reference to the object, but not the actual object itself.
+//In other words, you are passing a copy of the reference (the memory address where the object is stored), and this is why changes made to the object (like modifying the contents of a char[] or an ArrayList) will affect the original object outside the method.
+//However, if you reassign the reference inside the method (e.g., changing the reference to a new object), it will not affect the original object outside the method because you're only modifying the local reference, not the object itself.
+//Strings in Java
+//Strings are immutable in Java: This means that once a String object is created, it cannot be changed. If you attempt to modify a String object (e.g., through concatenation), a new String object is created, and the original object remains unchanged.
+//In your case of backtracking with strings, when you pass a String to a method, you are passing a copy of the reference to that String object. However, since String objects are immutable, you cannot modify the string itself directly inside the method.
+//For example:
+//
+//java
+//Copy
+//String str = "Hello";
+//modifyString(str);
+//System.out.println(str);  // Will print "Hello", not the modified string
+//
+//public static void modifyString(String s) {
+//    s = s + " World";  // Creates a new String object
+//}
+//Even though you modify the string inside modifyString, it won't affect the original str variable in main because strings are immutable. Java creates a new String object when you perform the concatenation.
+//
+//Backtracking with Strings in Java
+//In backtracking, when you use strings, you need to keep in mind that the string itself cannot be modified directly. Instead, you can:
+//
+//Use a mutable data structure (like a char[] array) to perform swaps or modifications.
+//String concatenation (like adding characters) will create new strings, so you would need to pass a new string when making changes.
+//In the case of the backtracking permutation code we discussed earlier, you are working with a mutable character array (char[]) for swapping characters, which is perfectly fine. In the recursive process, you modify the char[], and those changes will affect the state of the string as passed between method calls.
