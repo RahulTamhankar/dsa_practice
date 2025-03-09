@@ -1,0 +1,84 @@
+Reursion-> Has Choices + Decisions
+1)DP = Yaha pe kuch optimal puchte hai + (Choices and Decisions)
+2)Backtracking = Yaha mostly puchenge ki sare combinations batao
+3)Divide and Conquer
+
+BT= Control + Pass by reference
+
+All questions of BT can be solved by recursion
+but not vice versa(can be done but complex)
+
+Backtrack is used to revert the changes in previous node if the current node gets incorrect value.
+This has to be done coz of pass by reference use in BT. This is redundant if we use pass by value
+Pass by reference makes it efficient.. otherwise if we use recursion of 2D array in each node there
+will be multiple 2D arrays!
+
+
+Recursion me ANS leaft node pe milta hai
+BT me ANS ROOT node pe milta hai and since combinations are asked so we get ANS ON a path
+Usually in BT Questions there are a lot of Choices due to which we have to apply
+for loop on choices for(c in choices){
+                        if()--> control (Eg. East West North South House in West , E N S can be controlled )
+                     }
+
+Identification->
+1) Choices + Decisions
+2) All Combinations /All Paths /All valid etc keywords are used, Agar Optimal puchenge
+to DP ya Greedy lag jata hai but agar ALL pucha to BT lagega!
+3) Controlled Recursion
+4) Number of Choices very large that cant make Recursion Tree looks weirdly large
+5) Size of Constraints  Eg input has a String of size n and 1<=n<=10^6
+BT time complexity is usually exponential ie 2^N or N^D or N!
+so the n they give will usually be single digit ie. 1<n<10 itna bada diya hai matlab samaj jao BT hai
+Agar n double digit hai ie 1<n<20 then well have to do optimal by DP
+6)Dont be Greedy- Kabhi kabhi optimal puchte hai but DP mat lagana, DP tab lagegi jab koi choices bar bar arai hai
+why greedy?
+Eg largest in kth swap... 1234567 hum grredy hoke 1 for loop laga dete hai 4 baar swap karlo
+but hume solution long term ke lie chaiye. Coz this greedy approach will fail for 4577.
+Agar duplicate hai to greedy nai legegi varna lag jaegi.
+islie kabhi kabhi BT ke problems Greedy se hojate hai but agar duplicate hai to Greedy nai lagegi
+compulsory humko sab combinations try karne padenge.
+Dusra tarika hai ki constraints dekho BT aur greedy ka zameen asman ka farak hoga
+
+
+General code-
+1)Usually BT method is void.
+2)Base condition in BT usually call another function which returns boolean
+    void BT(){
+        if(isSolved()==True){-->Base Condition
+            print or save the correct path or ans in vector. So if vector is pass by references then return type can be void
+            no need to do all this for java. By default put void
+            Adjust this as per question...
+        }
+    }
+
+3) As per Identification step 4) choices are large
+hence for(c in all choices){
+    solve()--> recursion function
+}
+
+4) AS per Identification step 3) controlled recursion
+90% questions will need control, 10% no need as it will require all choices
+    if(choice/isValid== TRUE){
+        Only then CALL function solve
+    }
+
+--PSEUDO CODE--
+    void solve(&variable){
+        if(isSolved)== true---> Base
+            print
+
+        for(c in all choices){
+            if(isValid()==true)-->control
+                changes in variable
+                solve(changed variable)
+                revert back above change
+        }
+    }
+    return
+
+
+Dimag kisme lagana hai ?
+isSolved,
+c in all choices
+isValid
