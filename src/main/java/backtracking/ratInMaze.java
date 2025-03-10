@@ -5,10 +5,22 @@ import java.util.List;
 
 public class ratInMaze {
 
+
+    // Function to find all possible paths from (0, 0) to (N-1, N-1)
+    public static List<String> findPath(int[][] grid) {
+        List<String> allPaths = new ArrayList<>();
+        // Start backtracking from the top-left corner (0, 0) with an empty path
+        if (grid[0][0] == 1) {  // If the start position is not blocked
+            findAllPaths(grid, new int[]{0, 0}, "", allPaths);
+        }
+        Collections.sort(allPaths);  // Sort the paths lexicographically
+        return allPaths;
+    }
+
     // Function to find all possible paths
     public static void findAllPaths(int[][] grid, int[] currentPosition, String currentPath, List<String> allPaths) {
-        int gridWidth = grid[0].length - 1;  // Grid width (columns)
-        int gridHeight = grid.length - 1;    // Grid height (rows)
+        int gridWidth = grid[0].length - 1;  // Grid width (columns) n   nxm
+        int gridHeight = grid.length - 1;    // Grid height (rows) m
 
         int x = currentPosition[0];  // Current x position
         int y = currentPosition[1];  // Current y position
@@ -52,16 +64,7 @@ public class ratInMaze {
         }
     }
 
-    // Function to find all possible paths from (0, 0) to (N-1, N-1)
-    public static List<String> findPath(int[][] grid) {
-        List<String> allPaths = new ArrayList<>();
-        // Start backtracking from the top-left corner (0, 0) with an empty path
-        if (grid[0][0] == 1) {  // If the start position is not blocked
-            findAllPaths(grid, new int[]{0, 0}, "", allPaths);
-        }
-        Collections.sort(allPaths);  // Sort the paths lexicographically
-        return allPaths;
-    }
+
 
     // Main function to test the solution
     public static void main(String[] args) {

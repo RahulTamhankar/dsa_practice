@@ -5,23 +5,19 @@ import java.util.List;
 
 public class allPossiblePalindromicPartitions {
 
-    // Function to check if a string is a palindrome
-    public static boolean isPalindrome(String str) {
-        // Initialize two pointers: one at the start and one at the end
-        int start = 0, end = str.length() - 1;
+    // Main function to partition the string into all palindromic partitions
+    public static List<List<String>> partition(String s) {
+        // List to store all possible palindromic partitions
+        List<List<String>> result = new ArrayList<>();
 
-        // Loop through the string while the start pointer is less than the end pointer
-        while (start < end) {
-            // If characters at the start and end do not match, return false
-            if (str.charAt(start) != str.charAt(end)) {
-                return false;
-            }
-            // Move the start pointer forward and the end pointer backward
-            start++;
-            end--;
-        }
-        // If all characters matched, the string is a palindrome
-        return true;
+        // Temporary list to hold the current partition being explored
+        List<String> current = new ArrayList<>();
+
+        // Start the recursion from index 0
+        helper(s, result, current, 0);
+
+        // Return the list of all palindromic partitions
+        return result;
     }
 
     // Helper function to generate all palindromic partitions of the string
@@ -52,20 +48,27 @@ public class allPossiblePalindromicPartitions {
         }
     }
 
-    // Main function to partition the string into all palindromic partitions
-    public static List<List<String>> partition(String s) {
-        // List to store all possible palindromic partitions
-        List<List<String>> result = new ArrayList<>();
 
-        // Temporary list to hold the current partition being explored
-        List<String> current = new ArrayList<>();
+    // Function to check if a string is a palindrome
+    public static boolean isPalindrome(String str) {
+        // Initialize two pointers: one at the start and one at the end
+        int start = 0, end = str.length() - 1;
 
-        // Start the recursion from index 0
-        helper(s, result, current, 0);
-
-        // Return the list of all palindromic partitions
-        return result;
+        // Loop through the string while the start pointer is less than the end pointer
+        while (start < end) {
+            // If characters at the start and end do not match, return false
+            if (str.charAt(start) != str.charAt(end)) {
+                return false;
+            }
+            // Move the start pointer forward and the end pointer backward
+            start++;
+            end--;
+        }
+        // If all characters matched, the string is a palindrome
+        return true;
     }
+
+
 
     // Example usage of the function
     public static void main(String[] args) {
