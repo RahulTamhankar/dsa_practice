@@ -57,3 +57,63 @@ public class letterCombinationsOfPhoneNumber {
         System.out.println(result); // Expected: [ad, ae, af, bd, be, bf, cd, ce, cf]
     }
 }
+
+
+//import java.util.ArrayList;
+//import java.util.HashMap;
+//import java.util.List;
+//import java.util.Map;
+//
+//public class LetterCombinationsOfPhoneNumber {
+//
+//    public static List<String> letterCombinations(String digits) {
+//        // If the input string is empty, return an empty list.
+//        if (digits.length() == 0) return new ArrayList<>();
+//
+//        // Mapping of digits to letters (phone keypad mapping).
+//        Map<Character, String> mapping = new HashMap<>();
+//        mapping.put('2', "abc");
+//        mapping.put('3', "def");
+//        mapping.put('4', "ghi");
+//        mapping.put('5', "jkl");
+//        mapping.put('6', "mno");
+//        mapping.put('7', "pqrs");
+//        mapping.put('8', "tuv");
+//        mapping.put('9', "wxyz");
+//
+//        // List to store the resulting combinations.
+//        List<String> combinations = new ArrayList<>();
+//
+//        // Call the helper method to generate all combinations.
+//        generateCombinations(combinations, digits, 0, mapping, "");
+//
+//        return combinations;
+//    }
+//
+//    // Helper method for backtracking.
+//    private static void generateCombinations(List<String> combinations, String digits, int idx, Map<Character, String> mapping, String currStr) {
+//        // If the current combination's length matches the number of digits, add it to the result list.
+//        if (idx == digits.length()) {
+//            combinations.add(currStr);
+//            return;
+//        }
+//
+//        // Get the current digit and its corresponding letter map.
+//        char ch = digits.charAt(idx);
+//        String letters = mapping.get(ch);
+//
+//        // Loop through all the letters mapped to the current digit.
+//        for (char letter : letters.toCharArray()) {
+//            // Recursively build the combination by adding the letter.
+//            generateCombinations(combinations, digits, idx + 1, mapping, currStr + letter);
+//        }
+//    }
+//
+//    public static void main(String[] args) {
+//        String digits = "23"; // Example input
+//        List<String> result = letterCombinations(digits);
+//
+//        // Output the result
+//        System.out.println(result); // Expected: [ad, ae, af, bd, be, bf, cd, ce, cf]
+//    }
+//}
