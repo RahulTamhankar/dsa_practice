@@ -9,6 +9,12 @@ public class permutationwCaseChange {
             return;
         }
 
+        //String s = "abc";
+        //String result = s.substring(0, 1);  // result = "a"
+
+        //String s = "abc";
+        //String result = s.substring(0);  // result = "abc" (not just "a")
+
         // Get the first character of the input and create two new versions: lowercase and uppercase
         String op1 = output + input.substring(0, 1).toLowerCase();  // Add the lowercase character
         String op2 = output + input.substring(0, 1).toUpperCase();  // Add the uppercase character
