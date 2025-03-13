@@ -98,6 +98,17 @@ package backtracking;
 
 public class largestNumberInkSwaps {
 
+    // Function to find the largest number possible after k swaps
+    public static String findMaximumNum(String str, int k) {
+        StringBuilder ans = new StringBuilder(str);  // Current largest number found
+        StringBuilder sb = new StringBuilder(str);   // StringBuilder to modify during recursion
+
+        // Start the backtracking process
+        solve(sb, k, 0, ans);
+
+        return ans.toString(); // Return the largest number found
+    }
+
     // Recursive helper function for backtracking
     public static void solve(StringBuilder str, int k, int start, StringBuilder ans) {
         // Base case: if no swaps left or we've processed all characters
@@ -129,16 +140,6 @@ public class largestNumberInkSwaps {
         solve(str, k, start + 1, ans);
     }
 
-    // Function to find the largest number possible after k swaps
-    public static String findMaximumNum(String str, int k) {
-        StringBuilder ans = new StringBuilder(str);  // Current largest number found
-        StringBuilder sb = new StringBuilder(str);   // StringBuilder to modify during recursion
-
-        // Start the backtracking process
-        solve(sb, k, 0, ans);
-
-        return ans.toString(); // Return the largest number found
-    }
 
     // Utility function to swap characters at two positions in a StringBuilder
     private static void swap(StringBuilder str, int i, int j) {

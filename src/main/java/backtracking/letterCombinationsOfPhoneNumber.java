@@ -33,7 +33,8 @@ public class letterCombinationsOfPhoneNumber {
         // Find the current digit and its corresponding letter map.
         //Why Do We Do This?
         //
-        //The digits array (or string) contains characters that represent the digits of the phone number. However, these characters need to be converted into actual integers to index into the phoneMap array and retrieve the corresponding letters.
+        //The digits array (or string) contains characters that represent the digits of the phone number. However, these characters need to be converted
+        // into actual integers to index into the phoneMap array and retrieve the corresponding letters.
         //The phoneMap array is indexed by integers (from 2 to 9), but digits is a string (or char array) that contains characters like '2', '3', etc.
         //By subtracting '0', you get the correct integer value (e.g., '2' becomes 2, '3' becomes 3, etc.), which can then be used to index into phoneMap.
         int digitIndex = currentCombination.length();
