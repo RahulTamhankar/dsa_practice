@@ -25,8 +25,8 @@ public class reorderRoutes {
         }
     }
     //  0 → 1 → 3 ← 2
-    //    ↓
-    //    4 → 5
+    //  ↓
+    //  4 → 5
 
     // Function to find the minimum reorder needed to make the graph connected
     public static int minReorder(int n, List<List<Integer>> connections) {
@@ -73,3 +73,8 @@ public class reorderRoutes {
         System.out.println("Minimum reorder operations required: " + result);
     }
 }
+//Summary of Your Questions:
+//Yes, the DFS starts from node 0 and explores forward neighbors first.
+//After exploring forward neighbors, it explores backward neighbors,
+// but only if the node hasn't been visited yet. It doesn’t increment the reorder
+// count for backward edges since they are already in the correct direction.
