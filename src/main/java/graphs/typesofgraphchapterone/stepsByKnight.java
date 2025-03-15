@@ -60,6 +60,12 @@ public class stepsByKnight {
         int src_y = knightPos[0] - 1;
         int target_x = targetPos[1] - 1;
         int target_y = targetPos[0] - 1;
+        //If the target is at position (4, 5) (1-indexed), after adding 310:
+        //x = 4 + 310 = 314
+        //y = 5 + 310 = 315
+        //This places the target at (314, 315) in the larger offset grid.
+        //Conclusion:
+        //+310 is used in the second code to shift all coordinates (to avoid negative indices and work with larger grids).
 
         // Call the helper function to perform BFS and get the minimum steps
         return helper(src_x, src_y, target_x, target_y, n);
