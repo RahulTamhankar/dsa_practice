@@ -54,7 +54,7 @@ public class cycleDetectionInUndirectedGraphBFS {
 
         // Try to find a cycle in every connected component of the graph
         for (int i = 0; i < V; i++) {
-            if (!visited[i]) {
+            if (!visited[i]) { // for connected components do bfs from each node if unvisited
                 // Use BFS to detect a cycle in the connected component
                 //If its just a single graph then this will be called only once
                 if (bfs(i, adj, visited, parent)) {
