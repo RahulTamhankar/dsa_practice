@@ -2,7 +2,7 @@ package graphs.typesofgraphchapterone;
 
 import java.util.*;
 
-public class bfsImpl {
+public class    bfsImpl {
     // BFS function
     public static void bfs(int source, HashMap<Integer, List<Integer>> graph, int n) {
         // Queue for BFS traversal
