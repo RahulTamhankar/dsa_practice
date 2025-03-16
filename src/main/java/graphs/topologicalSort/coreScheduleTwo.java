@@ -12,7 +12,8 @@ public class coreScheduleTwo {
 
         // Build the graph from prerequisites
         //Prerequisistes ko travel karte time hi hum graph bhi bana sakte hai, yaha seperately kiya hai
-        for (List<Integer> edge : prerequisites) {//[ai , bi] , we are traversing a 2D vector , each vector me humko ek EDGE milega ie. [ai , bi]-> means "ai" karne se pehle tumko "bi" karna hai...  bi--->ai
+        for (List<Integer> edge : prerequisites) {//[ai , bi] , we are traversing a 2D vector , each vector me
+            // humko ek EDGE milega ie. [ai , bi]-> means "ai" karne se pehle tumko "bi" karna hai...  bi--->ai
             graph.get(edge.get(1)).add(edge.get(0));  //hence bi(edge 1).pushback(ai (edge 2))
         }
 
@@ -26,11 +27,12 @@ public class coreScheduleTwo {
 
         // Initialize queue for nodes with 0 indegree
         Queue<Integer> q = new LinkedList<>();
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i  < n; i++) {
             if (indegree[i] == 0) {
                 q.add(i);             // jiski bhi indegree 0 aai hai usko queue me save karo
             }                           // hum yaha indegree ki value 0 hai ki nai islie check kar rai hai kyuki agar upar wale for me kiya
-        }                               // to incorrect ho sakta hai.. coz pura traverse karne ke baaad hi hum decide kar sakte hai ki konse indegree 0 hai and then jaha 0 hai vahase BFS shuru kardo
+        }                               // to incorrect ho sakta hai.. coz pura traverse karne ke baaad hi hum decide kar sakte hai ki konse indegree 0 hai
+        // and then jaha 0 hai vahase BFS shuru kardo
 
 
         // Perform Kahn's algorithm (topological sorting)
