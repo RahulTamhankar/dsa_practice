@@ -4,33 +4,6 @@ import java.util.*;
 
 public class cycleDetectionInDirectedGraphDFS {
 
-    // Function to perform DFS traversal and detect cycle
-    public static boolean dfs(int node, List<Integer> adj[], boolean[] visited, boolean[] currentPath) {
-        // Mark the current node as visited and part of the current recursion path
-        visited[node] = true;
-        currentPath[node] = true;
-
-        // Explore each neighbor of the current node
-        for (int nbr : adj[node]) {
-            // If the neighbor hasn't been visited, do DFS on it.   //node unvisted hai to vo current path pe hai hi nai ofc
-            //just make a dfs call to nbr by passing adj List ,visited and currentPath
-            //agar res bolta hai hai cycle detected hai to return True
-            if (!visited[nbr]) {
-                boolean res = dfs(nbr, adj, visited, currentPath);
-                if (res) {
-                    return true;  // A cycle is found
-                }
-            } else if (currentPath[nbr]) { //agar visited marked hai to bhi Gaurantee nai hai cycle hogi, islie check karo agar current path me vo node hai ki nai
-                // If the neighbor is part of the current DFS path, a cycle is detected
-                return true;
-            }
-        }
-
-        // Backtrack by marking the node as not part of the current recursion path
-        //unmark the current node from path
-        currentPath[node] = false;
-        return false; // cycle detect nai hui kahi bhi
-    }
 
     // Function to detect cycle in the directed graph
     public static boolean isCycle(int V, List<Integer> adj[]) {
@@ -49,6 +22,37 @@ public class cycleDetectionInDirectedGraphDFS {
 
         return false;  // No cycle found
     }
+
+
+    // Function to perform DFS traversal and detect cycle
+    public static boolean dfs(int node, List<Integer> adj[], boolean[] visited, boolean[] currentPath) {
+        // Mark the current node as visited and part of the current recursion path
+        visited[node] = true;
+        currentPath[node] = true;
+
+        // Explore each neighbor of the current node
+        for (int nbr : adj[node]) {
+            // If the neighbor hasn't been visited, do DFS on it.   //node unvisted hai to vo current path pe hai hi nai ofc
+            //just make a dfs call to nbr by passing adj List ,visited and currentPath
+            //agar res bolta hai hai cycle detected hai to return True
+            if (!visited[nbr]) {
+                boolean res = dfs(nbr, adj, visited, currentPath);
+                if (res) {
+                    return true;  // A cycle is found
+                }
+            } else if (currentPath[nbr]) { //agar visited marked hai to bhi Gaurantee nai hai cycle hogi,
+                    // islie check karo agar current path me vo node hai ki nai
+                // If the neighbor is part of the current DFS path, a cycle is detected
+                return true;
+            }
+        }
+
+        // Backtrack by marking the node as not part of the current recursion path
+        //unmark the current node from path
+        currentPath[node] = false;
+        return false; // cycle detect nai hui kahi bhi
+    }
+
 
     // Example to use the class
     public static void main(String[] args) {
@@ -74,3 +78,6 @@ public class cycleDetectionInDirectedGraphDFS {
         }
     }
 }
+
+
+//cycle detection using BFS is done by topological sort

@@ -5,6 +5,24 @@ import java.util.List;
 
 public class eventualSafeStatesCode {
 
+    // Function to find all safe nodes in the graph
+    public static List<Integer> eventualSafeNodes(int V, List<Integer>[] adj) {
+        int[] visited = new int[V];  // 0: unvisited, 1: visited, 2: processed
+        int[] currentPath = new int[V]; // 0: not in recursion stack, 1: in recursion stack
+        List<Integer> safeNodes = new ArrayList<>();
+
+        // Try to find a cycle in every connected component of the graph
+        for (int i = 0; i < V; i++) {
+            if (visited[i] == 0) {  // If the node is unvisited
+                if (!dfs(i, adj, visited, currentPath)) {
+                    safeNodes.add(i); // If no cycle is found, the node is safe
+                }
+            }
+        }
+
+        return safeNodes; // Return the list of safe nodes
+    }
+
     // Depth-First Search function to detect cycles
     public static boolean dfs(int node, List<Integer>[] adj, int[] visited, int[] currentPath) {
         // Mark the current node as visited and part of the recursion stack
@@ -30,23 +48,7 @@ public class eventualSafeStatesCode {
         return false; // No cycle found for this node
     }
 
-    // Function to find all safe nodes in the graph
-    public static List<Integer> eventualSafeNodes(int V, List<Integer>[] adj) {
-        int[] visited = new int[V];  // 0: unvisited, 1: visited, 2: processed
-        int[] currentPath = new int[V]; // 0: not in recursion stack, 1: in recursion stack
-        List<Integer> safeNodes = new ArrayList<>();
 
-        // Try to find a cycle in every connected component of the graph
-        for (int i = 0; i < V; i++) {
-            if (visited[i] == 0) {  // If the node is unvisited
-                if (!dfs(i, adj, visited, currentPath)) {
-                    safeNodes.add(i); // If no cycle is found, the node is safe
-                }
-            }
-        }
-
-        return safeNodes; // Return the list of safe nodes
-    }
 
     public static void main(String[] args) {
         // Example Graph:
