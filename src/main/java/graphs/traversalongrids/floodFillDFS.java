@@ -8,6 +8,33 @@ public class floodFillDFS {
     private static final int[] dx = {-1, 0, 1, 0};
     private static final int[] dy = {0, 1, 0, -1};
 
+    public static int[][] floodFill(int[][] image, int sr, int sc, int color) {
+
+        //dfs first
+        //source is given
+        //go to the connected cells of the same color
+        //if it is a valid cell, change its color to the given color
+
+
+        // Get the number of rows and columns
+        int r = image.length;
+        int c = image[0].length;
+
+        // Get the original color at the starting point
+        //since the source color is going to change down the line, save it
+        int orgColor = image[sr][sc];
+
+        // If the original color is the same as the new color, no need to change
+        if (orgColor == color) {
+            return image; // return the image matrix
+        }
+
+        // Start DFS from the source cell (sr, sc)
+        dfs(sr, sc, orgColor, color, r, c, image);
+
+        return image;
+    }
+
     // Flood Fill using Depth-First Search (DFS)
     private static void dfs(int i, int j, int orgColor, int color, int r, int c, int[][] image) {
         // Base case: If out of bounds or the color is different, stop recursion
@@ -39,33 +66,7 @@ public class floodFillDFS {
         }
     }
 
-    public static int[][] floodFill(int[][] image, int sr, int sc, int color) {
 
-        //dfs first
-        //source is given
-        //go to the connected calls of the same color
-        //if it is a valid cell, change its color to the given color
-
-
-
-        // Get the number of rows and columns
-        int r = image.length;
-        int c = image[0].length;
-
-        // Get the original color at the starting point
-        //since the source color is going to change down the line, save it
-        int orgColor = image[sr][sc];
-
-        // If the original color is the same as the new color, no need to change
-        if (orgColor == color) {
-            return image; // return the image matrix
-        }
-
-        // Start DFS from the source cell (sr, sc)
-        dfs(sr, sc, orgColor, color, r, c, image);
-
-        return image;
-    }
 
     public static void main(String[] args) {
         int[][] image = {

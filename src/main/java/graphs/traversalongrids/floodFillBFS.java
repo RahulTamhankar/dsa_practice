@@ -2,7 +2,7 @@ package graphs.traversalongrids;
 
 import java.util.*;
 
-public class floodFillBFS {
+public class  floodFillBFS {
 
     // Direction arrays for traversing up, right, down, left
     private static final int[] dx = {-1, 0, 1, 0};
@@ -29,11 +29,13 @@ public class floodFillBFS {
                 int ii = i + dx[k];
                 int jj = j + dy[k];
 
-                // If the position is out of bounds or not the original color, skip it // DFS KI TARAHA ye hum BAHAR NAI KAR SAKTE Ie. OPTION 2
+                // If the position is out of bounds or not the original color, skip it // DFS KI TARAHA ye hum
+                // BAHAR NAI KAR SAKTE Ie. OPTION 2
                 //WHY?
                 //Agar humne for me directly q.add(new int[]{ii, jj}); ye kar diya aur bahar jake ye if check kiya to issue aaega
 
-                // Suppose A aur C dono queue me hai at the same time  <A,C> NOW  [A,B,C]  source node is A, hence insert all nbr of A into queue, A ko pop aur q= <C,B>
+                // Suppose A aur C dono queue me hai at the same time  <A,C> NOW  [A,B,C]  source node is A, hence insert
+                // all nbr of A into queue, A ko pop aur q= <C,B>
                 // Now next time C pop hua, C ka nbr B hai, but since B ko humne visited mark kiya hi nai hai
                 // B firse queue me insert hoga!!!  <B,B>
                 //Manlo ek aur nbr hota D, D pop hoag firse B insert hua  queue<B,B,B>
