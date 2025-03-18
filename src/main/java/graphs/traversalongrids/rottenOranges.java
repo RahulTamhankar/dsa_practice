@@ -29,9 +29,10 @@ public class rottenOranges {
         // BFS to spread the rotting process
         while (!pq.isEmpty()) {
             int sz = pq.size(); // to solve Multi-Source concept
-            int temp = 0;  // this is like a flag to update level and avoid initalizing ans=-1 concept, check notebook
+            int level = 0;  // this is like a flag to update level and avoid initalizing ans=-1 concept, check notebook
                             // inner loop chala matlab ek aur level add hua
-            while (sz-- > 0) { // suppose initially level 1 pe 2 nodes thi ie Source = 2 then traverse 2 times and insert their nbrs, Only after doing this we can say that, that particular level has been traversed!
+            while (sz-- > 0) { // suppose initially level 1 pe 2 nodes thi ie Source = 2 then traverse 2 times and insert
+                // their nbrs, Only after doing this we can say that, that particular level has been traversed!
                 int[] p = pq.poll();
                 int i = p[0];
                 int j = p[1];
@@ -49,14 +50,14 @@ public class rottenOranges {
                     // then mark it visited(grid[ii][jj] = 2;) insert it inside the Queue
                     if (ii >= 0 && jj >= 0 && ii < r && jj < c && grid[ii][jj] == 1) {
                         grid[ii][jj] = 2; // Mark as rotten
-                        temp = 1; // At least one orange rotted
+                        level = 1; // At least one orange rotted for inital rotten oranges ie int[] p = pq.poll(); int i = p[0]; int j = p[1];
                         pq.offer(new int[]{ii, jj});
                     }
                 }
             }
 
             // If any orange rotted in this step, increment the time
-            ans+=temp;
+            ans+=level;
         }
 
         // Final check to see if there are any fresh oranges left
