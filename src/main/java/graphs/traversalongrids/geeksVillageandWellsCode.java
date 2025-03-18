@@ -52,7 +52,7 @@ public class geeksVillageandWellsCode {
 
                         // 3 things were heppening when its a 'H' and 2 things happen when its a '.'
 
-                        // If it's a human, mark it with the distance (2 * counter)
+                        // If it's a house, mark it with the distance (2 * counter)
                         //1st thing - If its and 'H' to mujhe distance update karni hai , distance is 2*counter
                         if (c[newRow][newCol] == 'H') {
                             result[newRow][newCol] = 2 * counter;
@@ -70,7 +70,7 @@ public class geeksVillageandWellsCode {
             counter++; // increment the level
         }
 
-        // For all remaining humans, set result to -1 if unreachable
+        // For all remaining houses, set result to -1 if unreachable
         //jiske aas pass WELL nai tha aur H coordinates bach gai usko -1 mark kardo
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {

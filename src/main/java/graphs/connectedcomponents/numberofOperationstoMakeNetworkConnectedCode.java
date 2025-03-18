@@ -32,6 +32,7 @@ public class numberofOperationstoMakeNetworkConnectedCode {
 
 
         if (connections.length < n - 1) {  // ie X>=n-1 then only move forward else return -1
+                                            //ie if number of components are less than n-1 [[],[],[]...]
             return -1;
         }
 
