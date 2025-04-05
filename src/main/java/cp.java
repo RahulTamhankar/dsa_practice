@@ -1,30 +1,33 @@
-import java.time.chrono.MinguoChronology;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class cp {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();  // Number of test cases
 
-        // Read input
-        int n = sc.nextInt();  // Number of elements in the array
-        int[] arr = new int[n]; // Array to hold the elements
-        int min=Integer.MAX_VALUE;
+        // Loop through all test cases
+        while (t-- > 0) {
+            int n = sc.nextInt();  // Length of the final string
+            String s = sc.next();  // The final binary string itself
 
-        for (int i = 0; i < n; i++) {
-            arr[i] = sc.nextInt();
-        }
+            int start = 0, end = n - 1;
+            int count = 0;
 
-        for (int i = 0; i < n; i++) {
-            if(arr[i]==0){
-                System.out.println(0);
-                return;
-            }else {
-                min= Math.min(min,Math.abs(arr[i]));
+            // Check while start is less than end and characters at start and end are equal
+            while (start <= end) {
+                if (s.charAt(start) == s.charAt(end)) {
+                    break;
+                }
+                start++;
+                end--;
             }
+
+            // Output the length of the shortest possible original string
+            System.out.println(end - start + 1);
         }
-        System.out.println(min);
-        sc.close();
+
+        sc.close();  // Close the scanner after all test cases are done.
     }
 }
+

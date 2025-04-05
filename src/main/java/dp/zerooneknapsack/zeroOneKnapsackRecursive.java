@@ -1,6 +1,6 @@
 package dp.zerooneknapsack;
 
-public class zeroOneKnapsackRecursive {
+public class  zeroOneKnapsackRecursive {
 
     public static int knapsack(int profit[],int weight[],int w,int n){
         if(n==0 || w==0){
@@ -11,7 +11,7 @@ public class zeroOneKnapsackRecursive {
             return Math.max(profit[n-1]+knapsack(profit,weight,w-weight[n-1],n-1),
                     knapsack(profit,weight,w,n-1));
         }
-        else {
+           {
             return knapsack(profit,weight,w,n-1);
         }
     }
