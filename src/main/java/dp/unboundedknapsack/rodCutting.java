@@ -18,15 +18,19 @@ public class rodCutting {
                 } else if (i <= j) {
                     // Choose to cut the rod or skip
                     //Why Don't We Use coins[i-1] the Same Way as price[i-1]?
-                    //In Rod Cutting, price[i-1] is a profit that you get when you cut the rod into pieces of size i. This is a profit-maximizing problem, where you are trying to maximize the total profit from cutting the rod. Hence, you need to add the value price[i-1] if you decide to cut the rod into pieces of length i.
+                    //In Rod Cutting, price[i-1] is a profit that you get when you cut the rod into pieces of size i.
+                    // This is a profit-maximizing problem, where you are trying to maximize the total profit from
+                    // cutting the rod. Hence, you need to add the value price[i-1] if you decide to cut the rod into
+                    // pieces of length i.
                     //
-                    //In Coin Change, you're not interested in maximizing anything. You're simply counting the ways to make change. The number of ways to make change for j using the first i coins is the sum of:
+                    //In Coin Change, you're not interested in maximizing anything. You're simply counting the ways
+                    // to make change. The number of ways to make change for j using the first i coins is the sum of:
                     //
                     //The number of ways to make change for j - coins[i-1] (if you use the coin coins[i-1]).
                     //The number of ways to make change for j without using the coin coins[i-1].
                     //In summary:
                     //
-                    //Rod Cutting: You maximize the profit by including the value of price[i-1] when you decide to cut the rod. You compare the profit from cutting versus not cutting.
+                    //Rod Cutting:   of price[i-1] when you decide to cut the rod. You compare the profit from cutting versus not cutting.
                     //Coin Change: You count the ways to make change, so you add the number of ways you can make the remaining amount when including a coin.
                     //
                     dp[i][j] = Math.max(price[i - 1] + dp[i][j - i], dp[i - 1][j]);

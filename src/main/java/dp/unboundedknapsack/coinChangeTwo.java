@@ -130,16 +130,112 @@ public class coinChangeTwo {
 ///////////////////VVVVVV IMP/////////////////////
 //--------------------------------------------------/////////
 //Why 31 Works as a High "Impossible" Value:
-//        Avoids Incorrect Assumptions: If we initialized the DP table with 1 instead of 31, the algorithm would incorrectly treat amounts like 1, 2, 3, etc., as achievable with just 1 coin. This would create cascading errors in future calculations when trying to form higher amounts like 30, as the algorithm would prematurely assume a valid solution exists.
+//        Avoids Incorrect Assumptions: If we initialized the DP table with 1 instead of 31, the algorithm would incorrectly treat amounts like 1, 2, 3, etc., as achievable with just 1 coin. This would create cascading errors in future calculations
+//        when trying to form higher amounts like 30, as the algorithm would prematurely assume a valid solution exists.
 //
-//        Identifies Impossible States: The value 31 is large enough that it cannot be mistaken for a valid solution. It clearly signals that it's impossible to form that amount with the coins considered so far. If dp[n][amount] remains 31 after filling the table, we know that the amount cannot be formed with the available coins.
+//        Identifies Impossible States: The value 31 is large enough that it cannot be mistaken for a valid solution. It clearly signals that it's impossible to form that amount with the coins considered so far. If dp[n][amount] remains 31 after
+//        filling the table, we know that the amount cannot be formed with the available coins.
 //
 //        Conclusion:
 //        By initializing with amount + 1, we ensure that all "impossible" amounts are marked as impossible
 //        FOR Example here impossible would be 19.. sum 19 can never be formed by any coins hence it will be marked as impossible (31)
-//        (31 in our case). As we fill the DP table, the algorithm will correctly compute the minimum number of coins needed for each amount, and we can detect when it's not possible to form a particular amount. In the case of dp[3][30], this results in the correct answer of 2 coins (one 25 coin and one 5 coin).
+//        (31 in our case). As we fill the DP table, the algorithm will correctly compute the minimum number of coins needed for each amount, and we can detect when it's not possible to form a particular amount. In the case of dp[3][30],
+//        this results in the correct answer of 2 coins (one 25 coin and one 5 coin).
 
 // Comparison of Results:
 //DP Initialization	dp[3][19] Value	Explanation
 //Initialized with 1	1 (Incorrect)	This suggests that 19 can be made with 1 coin, which is wrong.
 //Initialized with 31	31 (Correct)	This correctly indicates that 19 is impossible to form with the available coins.
+
+
+////////////////////////////////////////////////////////////
+
+
+//Why not initialize the DP table with 0 for the first row?
+//The confusion seems to stem from the initialization of the DP table for the first row (when there are no coins). Let’s clarify the reasoning behind the initialization strategy and why Integer.MAX_VALUE (or amount + 1) is used rather than 0.
+//
+//In dynamic programming problems like this, we're trying to find the minimum number of coins needed to make a given amount, using a set of coins. The critical difference is that we want to track impossible cases correctly and prevent incorrect assumptions from propagating through the solution.
+//
+//Key Points to Consider:
+//Base Case (First Row):
+//
+//The first row represents the scenario when we have no coins available.
+//
+//So, for any positive amount, we can’t make the sum, which is why it’s impossible to form any amount using zero coins. Therefore, it should be initialized to a value that signals impossibility.
+//
+//If you initialize the first row (dp[0][j]) to 0, you would be implying that the minimum number of coins needed to form any amount is 0, even when no coins are available, which is incorrect.
+//
+//For example, dp[0][5] would wrongly become 0, implying that 5 can be formed with 0 coins, which isn't possible.
+//
+//Instead, set dp[0][j] to amount + 1 to mark all amounts as impossible to form when there are no coins.
+//
+//Why amount + 1 instead of Integer.MAX_VALUE?
+//
+//The reason amount + 1 is used is that it's a value that is guaranteed to be larger than the maximum possible number of coins required to form any amount. The maximum number of coins needed would be at most amount / coin[0], and since amount + 1 is always larger than any reasonable coin count, it represents an impossible state effectively.
+//
+//Using Integer.MAX_VALUE is another valid approach, but it can lead to overflow issues if not handled carefully. In some cases, amount + 1 is simpler and directly represents an impossible state without risking overflow. If you use Integer.MAX_VALUE, the logic still holds but you must ensure proper handling during subtraction in the final check.
+//
+//Why initialize the rest of the DP table with amount + 1?
+//
+//As mentioned, the goal is to mark impossible states. By initializing the table with amount + 1 (or Integer.MAX_VALUE), we ensure that any state that’s still amount + 1 at the end of the calculation means we couldn’t form that amount with the given coins.
+//
+//If a solution is found, it will replace this "impossible" value with the correct minimum number of coins.
+//
+//Let's break it down using an example:
+//Example: Coins = {25, 10, 5}, Amount = 30
+//You initialize the DP table with amount + 1 = 31 for all entries. The first row (dp[0][j] for j > 0) will be set to 31, indicating that you cannot form any amount with zero coins.
+//
+//Then, as you fill the DP table, for each coin, you either:
+//
+//Include the coin and add 1 to the solution (1 + dp[i][j - coin]), or
+//
+//Exclude the coin and carry forward the solution (dp[i - 1][j]).
+//
+//For example:
+//
+//To form amount 30 using coins {25, 10, 5}, the DP table might look something like:
+//
+//dp[1][30] will be 31 (no 25 coin used).
+//
+//dp[2][30] will be 2 (2 coins: 25 + 5).
+//
+//Finally, when you reach dp[n][amount], if it is still 31, it indicates that it's impossible to form that amount with the available coins.
+//
+//Conclusion:
+//The key reason to initialize the first row (dp[0][j] for all j > 0) to amount + 1 is to correctly signal impossible states. If you initialize it to 0, it would incorrectly suggest that you can form any amount with zero coins, which would lead to incorrect results.
+//
+//So, to summarize:
+//
+//Initialization with amount + 1 helps correctly identify impossible amounts and ensures that the algorithm works as intended, preventing erroneous results during the filling of the DP table.
+
+
+////////////////
+//Ah, I see what you're getting at! You're thinking that if there are no coins available (i.e., the 0th row), then it's logical to assume that you can't form any amount, and hence the minimum number of coins should be 0. However, the confusion arises from what 0 actually represents in the context of the problem.
+//
+//Let's break it down:
+//1. Understanding the First Row (No Coins Available)
+//When you initialize the DP table, the first row (where we have 0 coins available) represents the scenario where you can't use any coins to form a sum. So, it should be impossible to form any positive amount.
+//
+//For example, when you're trying to form an amount of j = 5 and you have no coins, it is impossible to form the sum 5, which is why dp[0][5] should be set to a value that indicates impossibility, not 0.
+//
+//2. Why Not 0?
+//If you set the first row (dp[0][j]) to 0, it would imply that the minimum number of coins required to form any positive amount (using 0 coins) is 0, which is logically wrong.
+//
+//For example, dp[0][5] = 0 would say "It takes 0 coins to form 5," which isn't true because you can't form 5 with 0 coins.
+
+
+//so you mean if we put 0 then it will lead to mean that there are some coins but if we don't use any of it we can make some some.. right ?
+//
+//ChatGPT said:
+//Yes, exactly! You've got it.
+//
+//If you initialize the first row (dp[0][j]) to 0, it would suggest that you can form any positive amount with 0 coins, which is logically incorrect.
+//
+//Here's why:
+//
+//The first row (dp[0][j] for j > 0) represents the case where you have no coins available to form a sum.
+//
+//Setting dp[0][j] = 0 would imply that you can form a sum of j with 0 coins, which doesn't make sense because without any coins, it's impossible to form any positive sum.
+
+
+// The coins itslef are not presnt whne i=0 so its IMPOSSIBLE to choose only in the first place

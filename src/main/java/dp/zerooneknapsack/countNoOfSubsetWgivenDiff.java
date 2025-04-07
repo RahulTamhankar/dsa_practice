@@ -20,7 +20,8 @@ public class countNoOfSubsetWgivenDiff {
         }
 
         int subset=(sum+diff)/2;
-        //Also I like the suggestion to use (sum_of_arr - diff)/2 instead of (sum_of_arr + diff)/2 this will reduce the size of array.
+        //Also I like the suggestion to use (sum_of_arr - diff)/2 instead of
+        // (sum_of_arr + diff)/2 this will reduce the size of array.
         int[][] dp= new int[n+1][subset+1];
 
         for(int i=0;i<=n;i++){
