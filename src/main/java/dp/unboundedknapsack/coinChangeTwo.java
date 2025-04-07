@@ -239,3 +239,11 @@ public class coinChangeTwo {
 
 
 // The coins itslef are not presnt whne i=0 so its IMPOSSIBLE to choose only in the first place
+
+
+
+//////////////
+
+//humne 1 + () kiya coz we want to count minimums... but suppose in worst case if there is no minimum possible then the last bottom cell will have INT_MAX + 1 --> Int overflow as INT_MAX +1 IS -VE VALUE. hence in the start only we do INT_MAX-1     SO THAT IT
+//GETS nullified in the end cell....so if initally we store some INT_MAX value say 99999999999999 -1 = 99999999998
+// then in worst case as in the if() we w=do 1+......... then the end call the value will still be valid for INT data type ie 9999999999998+1 = 99999999999999(no overflow)
