@@ -6,17 +6,18 @@ public class shortestCommonSuperSequence {
         int n2 = s2.length();
         int[][] dp = new int[n1 + 1][n2 + 1];
 
-        // Fill the DP table
-        for (int i = 1; i <= n1; i++) {
-            for (int j = 1; j <= n2; j++) {
-                // Compare characters at positions (i-1) and (j-1)
-                if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
-                    dp[i][j] = 1 + dp[i - 1][j - 1];  // Length of current common subsequence
+        for (int i = 0; i <= n1; i++) {
+            for (int j = 0; j <= n2; j++) {
+                if (i == 0 || j == 0) {
+                    dp[i][j] = 0;  // base case: empty string comparison
+                } else if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
+                    dp[i][j] = 1 + dp[i - 1][j - 1];  // characters match
                 } else {
-                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);  // Take the max of left or top cell
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);  // take max from left or top
                 }
             }
         }
+
 
         // The length of the shortest common supersequence is calculated by:
         // Length of s1 + Length of s2 - Length of the Longest Common Subsequence (LCS)

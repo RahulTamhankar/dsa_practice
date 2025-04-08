@@ -40,3 +40,5 @@ public class minInsertDeleteToConvertStringAtoB {
         System.out.println("Insertions: " + result[1]);
     }
 }
+//You’re modifying a, not b, so subtractions always
+// happen from a when calculating deletions, and from b when calculating insertions
