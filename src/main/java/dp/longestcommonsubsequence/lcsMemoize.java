@@ -1,6 +1,6 @@
 package dp.longestcommonsubsequence;
 
-public class lcsMemoize {
+public class  lcsMemoize {
 
     // Recursive method to find the length of the longest common subsequence using memoization
     public static int find(String s1, String s2, int n1, int n2, int[][] dp) {

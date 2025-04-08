@@ -87,7 +87,8 @@ public class printLongestCommonSubsequence {
 //
 //    why we move diagonally when i-1==j-1 and up or left when not equal to maximum.. whats the logic behind it?
 //        ChatGPT said:
-//        Great question! The logic behind moving diagonally or up/left while filling the DP table in problems like the Longest Common Subsequence (LCS) can be understood by looking at the relationship between subproblems in dynamic programming. Let’s break it down step by step to understand why we make these specific moves:
+//        Great question! The logic behind moving diagonally or up/left while filling the DP table in problems like the Longest Common Subsequence (LCS) can be understood by looking at the relationship between subproblems in dynamic programming.
+//        Let’s break it down step by step to understand why we make these specific moves:
 //
 //        1. When i-1 == j-1 (Diagonal Movement):
 //        In the case of LCS, we are comparing characters of two strings s1 and s2 at positions i-1 and j-1.
