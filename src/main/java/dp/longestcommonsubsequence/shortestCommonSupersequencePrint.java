@@ -1,5 +1,25 @@
 package dp.longestcommonsubsequence;
 
+
+//🔗 The relationship between LCS and Shortest Common Supersequence (SCS)
+//Let’s take two strings:
+//
+//str1 = "abc"
+//
+//str2 = "ac"
+//
+//🔸 LCS(str1, str2) = "ac"
+//🔸 Length of SCS = str1.length() + str2.length() - LCS.length()
+//→ In this case: 3 + 2 - 2 = 3 → SCS is "abc"
+//
+//🧠 So why use LCS to get SCS?
+//Because the shortest common supersequence is the shortest string that has both str1 and str2 as subsequences.
+//
+//We don’t want to repeat the common parts (LCS) in both strings — so we:
+//
+//Include non-LCS characters from both strings, and
+//
+//Merge them in such a way that the common subsequence appears only once.
 public class shortestCommonSupersequencePrint {
 
     public static String shortestCommonSupersequence(String str1, String str2) {
