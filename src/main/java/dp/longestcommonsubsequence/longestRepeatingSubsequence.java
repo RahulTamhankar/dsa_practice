@@ -51,3 +51,10 @@ public class longestRepeatingSubsequence {
         System.out.println("Length of Longest Repeating Subsequence: " + result);
     }
 }
+
+//Avoid Same Position Repetition:
+//
+//If i == j, you are comparing the same character at the same index, which doesn’t make sense for a subsequence that repeats at different positions.
+//
+//The condition i != j ensures that we are comparing different positions in the string for repeating characters.
+// This is critical because in any valid repeating subsequence, the characters must come from different positions in the string
